@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import eu.pablo.model.AddressModel;
+import eu.pablo.model.IrelandAddressModel;
 import eu.pablo.model.IrelandAddressCoordinateLookupModel;
 
 @RunWith(SpringRunner.class)
@@ -27,7 +27,7 @@ public class TestIrelandAddressService {
 	@Test
 	@Transactional
 	public void testInsertAndFindNewPostcode(){
-		AddressModel iam = new AddressModel();
+		IrelandAddressModel iam = new IrelandAddressModel();
 		iam.setPostcode("POSTCODE1");
 		iam.setAddressline1("False Street number 123");
 		
@@ -54,14 +54,14 @@ public class TestIrelandAddressService {
 	@Test
 	@Transactional
 	public void testRemoveAndFindPostcode(){
-		AddressModel am = new AddressModel();
+		IrelandAddressModel am = new IrelandAddressModel();
 		am.setPostcode("POSTCODE2");
 		am.setAddressline1("False Street number 123");
 		
 		irelandAddressService.insertIrelandAddress(am);
 		assertEquals(am.getAddressline1(), irelandAddressService.findByPostcode("POSTCODE2").getAddressline1());
 		
-		AddressModel res = irelandAddressService.removeIrelandAddress(am);
+		IrelandAddressModel res = irelandAddressService.removeIrelandAddress(am);
 		
 		assertNotNull(res);
 		assertNull(irelandAddressService.findByPostcode("POSTCODE2"));
@@ -71,7 +71,7 @@ public class TestIrelandAddressService {
 	@Test
 	@Transactional
 	public void testRemoveNotFoundPostcode(){
-		AddressModel am = new AddressModel();
+		IrelandAddressModel am = new IrelandAddressModel();
 		am.setPostcode("POSTCODE2");
 		am.setAddressline1("False Street number 123");
 		
@@ -79,7 +79,7 @@ public class TestIrelandAddressService {
 		assertEquals(am.getAddressline1(), irelandAddressService.findByPostcode("POSTCODE2").getAddressline1());
 		
 		am.setPostcode("POSTCODE1");
-		AddressModel res = irelandAddressService.removeIrelandAddress(am);
+		IrelandAddressModel res = irelandAddressService.removeIrelandAddress(am);
 		
 		assertNull(res);
 		
@@ -97,7 +97,7 @@ public class TestIrelandAddressService {
 		irelandAddressService.insertIrelandAddress(iam);
 		assertEquals(iam.getAddressline1(), irelandAddressService.findByPostcode("POSTCODE2").getAddressline1());
 		
-		AddressModel res = irelandAddressService.removeIrelandAddress(iam);
+		IrelandAddressModel res = irelandAddressService.removeIrelandAddress(iam);
 		
 		assertNotNull(res);
 		assertNull(irelandAddressService.findByPostcode("POSTCODE2"));
@@ -107,7 +107,7 @@ public class TestIrelandAddressService {
 	@Test
 	@Transactional
 	public void testFindByPostcodeNotFound() {
-		AddressModel iam = new AddressModel();
+		IrelandAddressModel iam = new IrelandAddressModel();
 		iam.setPostcode("POSTCODE1");
 		iam.setAddressline1("False Street number 123");
 		

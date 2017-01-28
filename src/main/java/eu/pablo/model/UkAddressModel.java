@@ -1,6 +1,6 @@
 package eu.pablo.model;
 
-public class UkAddressModel extends AddressModel {
+public class UkAddressModel extends IrelandAddressModel {
 
 	private String addressline3;
 	private String buildingname;

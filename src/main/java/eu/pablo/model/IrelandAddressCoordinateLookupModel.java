@@ -1,6 +1,12 @@
 package eu.pablo.model;
 
-public class IrelandAddressCoordinateLookupModel extends AddressModel {
+import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@Component
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class IrelandAddressCoordinateLookupModel extends IrelandAddressModel {
 	
 	private String latitude;
 	private String longitude;

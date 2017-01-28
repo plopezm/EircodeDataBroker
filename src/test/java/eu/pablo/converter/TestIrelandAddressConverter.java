@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import eu.pablo.entity.IrelandAddress;
-import eu.pablo.model.AddressModel;
+import eu.pablo.model.IrelandAddressModel;
 import eu.pablo.model.IrelandAddressCoordinateLookupModel;
 import eu.pablo.model.IrelandAddressWhat3WordsModel;
 
@@ -31,7 +31,7 @@ public class TestIrelandAddressConverter {
 		ia.setAddressline2("Springfield");
 		ia.setCounty("Someplace");
 		
-		AddressModel iam = irelandAddressConverter.entity2model(ia);
+		IrelandAddressModel iam = irelandAddressConverter.entity2model(ia);
 		
 		assertNotNull(iam);
 		assertEquals(ia.getPostcode(), iam.getPostcode());
@@ -83,7 +83,7 @@ public class TestIrelandAddressConverter {
 	
 	@Test
 	public void testModel2EntityConversion(){
-		AddressModel iam = new AddressModel();
+		IrelandAddressModel iam = new IrelandAddressModel();
 		iam.setPostcode("POSTCODE1");
 		iam.setAddressline1("False Street number 123");
 		iam.setAddressline2("Springfield");

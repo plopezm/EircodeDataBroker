@@ -4,15 +4,15 @@ import org.springframework.stereotype.Component;
 
 import eu.pablo.entity.Address;
 import eu.pablo.entity.IrelandAddress;
-import eu.pablo.model.AddressModel;
+import eu.pablo.model.IrelandAddressModel;
 import eu.pablo.model.IrelandAddressCoordinateLookupModel;
 import eu.pablo.model.IrelandAddressWhat3WordsModel;
 
 @Component("irelandAddressConverter")
 public class IrelandAddressConverter {
 
-	public AddressModel entity2model(Address addr){
-		return new AddressModel(addr.getAddressline1(),
+	public IrelandAddressModel entity2model(Address addr){
+		return new IrelandAddressModel(addr.getAddressline1(),
 				addr.getAddressline2(),
 				addr.getSummaryline(),
 				addr.getOrganisation(),
@@ -47,7 +47,7 @@ public class IrelandAddressConverter {
 				addr.getWhat3words());
 	}
 	
-	public IrelandAddress model2entity(AddressModel addrModel){
+	public IrelandAddress model2entity(IrelandAddressModel addrModel){
 		return new IrelandAddress(0, addrModel.getAddressline1(),
 				addrModel.getAddressline2(),
 				addrModel.getSummaryline(),

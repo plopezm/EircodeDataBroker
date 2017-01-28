@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import eu.pablo.converter.IrelandAddressConverter;
 import eu.pablo.entity.IrelandAddress;
-import eu.pablo.model.AddressModel;
+import eu.pablo.model.IrelandAddressModel;
 import eu.pablo.model.IrelandAddressCoordinateLookupModel;
 import eu.pablo.model.IrelandAddressWhat3WordsModel;
 import eu.pablo.repository.IrelandAddressJpaRepository;
@@ -28,7 +28,7 @@ public class IrelandAddressServiceImpl implements IrelandAddressService {
 	}
 
 	@Override
-	public AddressModel findByPostcode(String postcode) {
+	public IrelandAddressModel findByPostcode(String postcode) {
 		IrelandAddress ia = irelandAddressJpaRepository.findByPostcode(postcode);
 		if(ia == null)
 			return null;
@@ -52,7 +52,7 @@ public class IrelandAddressServiceImpl implements IrelandAddressService {
 	}
 
 	@Override
-	public AddressModel insertIrelandAddress(AddressModel am) {
+	public IrelandAddressModel insertIrelandAddress(IrelandAddressModel am) {
 		if(am == null)
 			return null;
 		IrelandAddress ia = irelandAddressJpaRepository.save(irelandAddressConverter.model2entity(am));
@@ -76,7 +76,7 @@ public class IrelandAddressServiceImpl implements IrelandAddressService {
 	}
 
 	@Override
-	public AddressModel removeIrelandAddress(AddressModel am) {
+	public IrelandAddressModel removeIrelandAddress(IrelandAddressModel am) {
 		if(am == null)
 			return null;
 		int res = irelandAddressJpaRepository.deleteByPostcode(am.getPostcode());
