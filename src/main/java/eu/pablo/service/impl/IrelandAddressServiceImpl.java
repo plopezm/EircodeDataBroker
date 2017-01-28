@@ -1,7 +1,5 @@
 package eu.pablo.service.impl;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -17,7 +15,7 @@ import eu.pablo.service.IrelandAddressService;
 @Service("irelandAddressServiceImpl")
 public class IrelandAddressServiceImpl implements IrelandAddressService {
 	
-	private static final Log LOG = LogFactory.getLog(IrelandAddressServiceImpl.class);
+	//private static final Log LOG = LogFactory.getLog(IrelandAddressServiceImpl.class);
 
 	@Autowired
 	private IrelandAddressJpaRepository irelandAddressJpaRepository;
