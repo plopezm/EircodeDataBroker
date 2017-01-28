@@ -1,21 +1,18 @@
-package eu.pablo.entity;
+package eu.pablo.model;
 
-import javax.persistence.Entity;
+public class UkAddressModel extends AddressModel {
 
-@Entity
-public class UKAddress extends Address {
-	
 	private String addressline3;
 	private String buildingname;
 	private String premise;
 	private String dependentlocality;
+
+	public UkAddressModel(){}
 	
-	public UKAddress(){}
-	
-	public UKAddress(int id, String addressline1, String addressline2, String summaryline, String organisation,
+	public UkAddressModel(String addressline1, String addressline2, String summaryline, String organisation,
 			String street, String posttown, String county, String postcode, String addressline3, String buildingname,
 			String premise, String dependentlocality) {
-		super(id, addressline1, addressline2, summaryline, organisation, street, posttown, county, postcode);
+		super(addressline1, addressline2, summaryline, organisation, street, posttown, county, postcode);
 		this.addressline3 = addressline3;
 		this.buildingname = buildingname;
 		this.premise = premise;
@@ -56,13 +53,12 @@ public class UKAddress extends Address {
 
 	@Override
 	public String toString() {
-		return "UKAddress [addressline3=" + addressline3 + ", buildingname=" + buildingname + ", premise=" + premise
-				+ ", dependentlocality=" + dependentlocality + ", getId()=" + getId() + ", getAddressline1()="
-				+ getAddressline1() + ", getAddressline2()=" + getAddressline2() + ", getSummaryline()="
-				+ getSummaryline() + ", getOrganisation()=" + getOrganisation() + ", getStreet()=" + getStreet()
-				+ ", getPosttown()=" + getPosttown() + ", getCounty()=" + getCounty() + ", getPostcode()="
-				+ getPostcode() + ", toString()=" + super.toString() + ", getClass()=" + getClass() + ", hashCode()="
-				+ hashCode() + "]";
+		return "UkAddressModel [addressline3=" + addressline3 + ", buildingname=" + buildingname + ", premise="
+				+ premise + ", dependentlocality=" + dependentlocality + ", getAddressline1()=" + getAddressline1()
+				+ ", getAddressline2()=" + getAddressline2() + ", getSummaryline()=" + getSummaryline()
+				+ ", getOrganisation()=" + getOrganisation() + ", getStreet()=" + getStreet() + ", getPosttown()="
+				+ getPosttown() + ", getCounty()=" + getCounty() + ", getPostcode()=" + getPostcode() + ", toString()="
+				+ super.toString() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + "]";
 	}
 
 }
