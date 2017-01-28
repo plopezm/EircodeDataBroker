@@ -2,8 +2,11 @@ package eu.pablo.model;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Component
-public class AddressModel {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class IrelandAddressModel {
 
 	private String addressline1;
 	private String addressline2;
@@ -14,10 +17,10 @@ public class AddressModel {
 	private String county;
 	private String postcode;
 	
-	public AddressModel() {
+	public IrelandAddressModel() {
 	}
 
-	public AddressModel(String addressline1, String addressline2, String summaryline, String organisation,
+	public IrelandAddressModel(String addressline1, String addressline2, String summaryline, String organisation,
 			String street, String posttown, String county, String postcode) {
 		super();
 		this.addressline1 = addressline1;
@@ -27,7 +30,7 @@ public class AddressModel {
 		this.street = street;
 		this.posttown = posttown;
 		this.county = county;
-		this.postcode = postcode;
+		this.postcode = postcode.replaceAll("\\s","");
 	}
 
 	public String getAddressline1() {
@@ -87,7 +90,7 @@ public class AddressModel {
 	}
 
 	public String getPostcode() {
-		return postcode;
+		return postcode.replaceAll("\\s","");
 	}
 
 	public void setPostcode(String postcode) {

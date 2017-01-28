@@ -1,6 +1,12 @@
 package eu.pablo.model;
 
-public class IrelandAddressWhat3WordsModel extends AddressModel {
+import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@Component
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class IrelandAddressWhat3WordsModel extends IrelandAddressModel {
 
 	private String what3words;
 	
