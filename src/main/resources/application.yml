@@ -1,0 +1,25 @@
+# BANNER
+banner:
+  location: classpath:banner.txt
+# SERVER
+server:
+  error:
+    whitelabel:
+      enabled: true
+# SPRING
+spring:
+  # DATASOURCE
+  datasource:
+    url: jdbc:h2:mem:AZ;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driverClassName: org.h2.Driver
+    datasource.username: sa
+    password:
+  # JPA
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
