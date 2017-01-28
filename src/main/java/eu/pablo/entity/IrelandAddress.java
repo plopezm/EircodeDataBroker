@@ -1,10 +1,8 @@
 package eu.pablo.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-//@PrimaryKeyJoinColumn(name="addressId")
 public class IrelandAddress extends Address {
 
 	private String latitude;
