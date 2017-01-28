@@ -26,6 +26,7 @@ public class TestIrelandAddressRestController {
 
 	private static final String IRELAND_API_KEY = "PCWR4-5BCKC-9SDCS-3YK23";
 	private static final String TEST_POSTCODE = "D02X285";
+	private static final String TEST_POSTCODE_NOT_FOUND = "IM_SURE_THIS_DOESNOT_EXIST";
 	
 	@Autowired
     private IrelandAddressRestController irelandAddressRestController;
@@ -47,7 +48,7 @@ public class TestIrelandAddressRestController {
     
 	@Test
 	public void testFetchIrelandAddressModelNotFound() {
-		ResponseEntity<IrelandAddressModel> re = this.restTemplate.getForEntity("http://localhost:" + port + "/pcw/"+IRELAND_API_KEY+"/address/ie/"+TEST_POSTCODE+"?format=json",
+		ResponseEntity<IrelandAddressModel> re = this.restTemplate.getForEntity("http://localhost:" + port + "/pcw/"+IRELAND_API_KEY+"/address/ie/"+TEST_POSTCODE_NOT_FOUND+"?format=json",
 				IrelandAddressModel.class);
 		assertEquals(HttpStatus.NOT_FOUND, re.getStatusCode());
 	}

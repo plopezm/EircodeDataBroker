@@ -26,7 +26,7 @@ public class TestIrelandAddressRestClientManager {
 	
 	@Test
 	public void testGetIrlandAddressModel(){
-		ResponseEntity<IrelandAddressModel[]> re = irelandAddressRestClientManager.getIrlandAddressModel(IRELAND_API_KEY, TEST_POSTCODE, "json");
+		ResponseEntity<IrelandAddressModel[]> re = irelandAddressRestClientManager.getIrelandAddressModel(IRELAND_API_KEY, TEST_POSTCODE, "json");
 		assertNotNull(re);
 		IrelandAddressModel[] iams = re.getBody();
 		assertNotNull(iams);
@@ -36,7 +36,7 @@ public class TestIrelandAddressRestClientManager {
 	
 	@Test
 	public void testGetIrlandCoordAddressModel(){
-		ResponseEntity<IrelandAddressCoordinateLookupModel[]> re = irelandAddressRestClientManager.getIrlandCoordinateAddressModel(IRELAND_API_KEY, TEST_POSTCODE, "json");
+		ResponseEntity<IrelandAddressCoordinateLookupModel[]> re = irelandAddressRestClientManager.getIrelandCoordinateAddressModel(IRELAND_API_KEY, TEST_POSTCODE, "json");
 		assertNotNull(re);
 		IrelandAddressCoordinateLookupModel[] iams = re.getBody();
 		assertNotNull(iams);
