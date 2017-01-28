@@ -17,29 +17,31 @@ import eu.pablo.model.IrelandAddressModel;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class TestIrelandAddressRestClientManager {
-
+	private static final String TEST_POSTCODE = "D02X285";
+	private static final String IRELAND_API_KEY = "PCW45-12345-12345-1234X";
+	
 	@Autowired
 	@Qualifier("irelandAddressRestClientManager")
 	private IrelandAddressRestClientManager irelandAddressRestClientManager;
 	
 	@Test
 	public void testGetIrlandAddressModel(){
-		ResponseEntity<IrelandAddressModel[]> re = irelandAddressRestClientManager.getIrlandAddressModel("D02X285", "json");
+		ResponseEntity<IrelandAddressModel[]> re = irelandAddressRestClientManager.getIrelandAddressModel(IRELAND_API_KEY, TEST_POSTCODE, "json");
 		assertNotNull(re);
 		IrelandAddressModel[] iams = re.getBody();
 		assertNotNull(iams);
 		assertEquals(1, iams.length);
-		assertEquals("D02X285", iams[0].getPostcode());
+		assertEquals(TEST_POSTCODE, iams[0].getPostcode());
 	}
 	
 	@Test
 	public void testGetIrlandCoordAddressModel(){
-		ResponseEntity<IrelandAddressCoordinateLookupModel[]> re = irelandAddressRestClientManager.getIrlandCoordinateAddressModel("D02X285", "json");
+		ResponseEntity<IrelandAddressCoordinateLookupModel[]> re = irelandAddressRestClientManager.getIrelandCoordinateAddressModel(IRELAND_API_KEY, TEST_POSTCODE, "json");
 		assertNotNull(re);
 		IrelandAddressCoordinateLookupModel[] iams = re.getBody();
 		assertNotNull(iams);
 		assertEquals(1, iams.length);
-		assertEquals("D02X285", iams[0].getPostcode());
+		assertEquals(TEST_POSTCODE, iams[0].getPostcode());
 		assertNotNull(iams[0].getLatitude());
 		assertNotNull(iams[0].getLongitude());
 

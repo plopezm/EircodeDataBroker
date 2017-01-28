@@ -30,7 +30,8 @@ public class IrelandAddressModel {
 		this.street = street;
 		this.posttown = posttown;
 		this.county = county;
-		this.postcode = postcode.replaceAll("\\s","");
+		if(postcode != null)
+			this.postcode = postcode.replaceAll("\\s","");
 	}
 
 	public String getAddressline1() {
@@ -90,6 +91,8 @@ public class IrelandAddressModel {
 	}
 
 	public String getPostcode() {
+		if(this.postcode == null)
+			return null;
 		return postcode.replaceAll("\\s","");
 	}
 

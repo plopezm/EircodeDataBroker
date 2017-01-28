@@ -32,18 +32,18 @@ public class IrelandAddressRestClientManagerImpl implements IrelandAddressRestCl
 	}
 	
 	@Override
-	public ResponseEntity<IrelandAddressModel[]> getIrlandAddressModel(String postcode, String format){
+	public ResponseEntity<IrelandAddressModel[]> getIrelandAddressModel(String api_key, String postcode, String format){
 		Map<String, String> variables = new HashMap<String, String>(3);
-        variables.put("api_key", IRELAND_API_KEY);
+        variables.put("api_key", api_key);
         variables.put("eircode", postcode);
         variables.put("format", format);
         return rt.getForEntity(IRELAND_ADDRESS_URL, IrelandAddressModel[].class, variables);
 	}
 	
 	@Override
-	public ResponseEntity<IrelandAddressCoordinateLookupModel[]> getIrlandCoordinateAddressModel(String postcode, String format){
+	public ResponseEntity<IrelandAddressCoordinateLookupModel[]> getIrelandCoordinateAddressModel(String api_key, String postcode, String format){
 		Map<String, String> variables = new HashMap<String, String>(3);
-        variables.put("api_key", IRELAND_API_KEY);
+        variables.put("api_key", api_key);
         variables.put("eircode", postcode);
         variables.put("format", format);
 		return rt.getForEntity(IRELAND_ADDRESSGEO_URL, IrelandAddressCoordinateLookupModel[].class, variables);
