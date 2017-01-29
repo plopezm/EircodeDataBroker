@@ -10,5 +10,6 @@ import eu.pablo.entity.UKAddress;
 @Repository("ukAddressJpaRepository")
 public interface UKAddressJpaRepository extends JpaRepository<UKAddress, Serializable>{
 	public UKAddress findByPostcode(String postcode);
+	public UKAddress findByPostcodeAndAddressline1AndAddressline2AndStreet(String postcode, String addressline1, String addressline2, String street);
 	public int deleteByPostcode(String postcode);
 }

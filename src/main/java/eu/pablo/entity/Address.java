@@ -3,16 +3,13 @@ package eu.pablo.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="address", uniqueConstraints={@UniqueConstraint(columnNames = {"id" , "postcode"})})
 public class Address {
 
 	@Id
 	@GeneratedValue
-	private int id;
+	private long id;
 
 	private String addressline1;
 	private String addressline2;
@@ -40,11 +37,11 @@ public class Address {
 		this.postcode = postcode;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

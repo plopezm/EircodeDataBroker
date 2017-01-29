@@ -55,7 +55,16 @@ public class IrelandAddressServiceImpl implements IrelandAddressService {
 	public IrelandAddressModel insertIrelandAddress(IrelandAddressModel am) {
 		if(am == null)
 			return null;
-		IrelandAddress ia = irelandAddressJpaRepository.save(irelandAddressConverter.model2entity(am));
+		
+		IrelandAddress ia = irelandAddressConverter.model2entity(am);
+		
+		IrelandAddress databaseIA = irelandAddressJpaRepository.findByPostcodeAndAddressline1AndAddressline2AndStreet(
+				ia.getPostcode(), ia.getAddressline1(), ia.getAddressline2(), ia.getStreet());
+		
+		if(databaseIA != null)
+			ia.setId(databaseIA.getId());
+		
+		ia = irelandAddressJpaRepository.save(ia);
 		return irelandAddressConverter.entity2model(ia);
 	}
 
@@ -63,7 +72,15 @@ public class IrelandAddressServiceImpl implements IrelandAddressService {
 	public IrelandAddressCoordinateLookupModel insertIrelandAddress(IrelandAddressCoordinateLookupModel am) {
 		if(am == null)
 			return null;
-		IrelandAddress ia = irelandAddressJpaRepository.save(irelandAddressConverter.model2entity(am));
+		IrelandAddress ia = irelandAddressConverter.model2entity(am);
+		
+		IrelandAddress databaseIA = irelandAddressJpaRepository.findByPostcodeAndAddressline1AndAddressline2AndStreet(
+				ia.getPostcode(), ia.getAddressline1(), ia.getAddressline2(), ia.getStreet());
+		
+		if(databaseIA != null)
+			ia.setId(databaseIA.getId());
+		
+		ia = irelandAddressJpaRepository.save(ia);		
 		return irelandAddressConverter.entity2CoordModel(ia);
 	}
 
@@ -71,7 +88,15 @@ public class IrelandAddressServiceImpl implements IrelandAddressService {
 	public IrelandAddressWhat3WordsModel insertIrelandAddress(IrelandAddressWhat3WordsModel am) {
 		if(am == null)
 			return null;
-		IrelandAddress ia = irelandAddressJpaRepository.save(irelandAddressConverter.model2entity(am));
+		IrelandAddress ia = irelandAddressConverter.model2entity(am);
+		
+		IrelandAddress databaseIA = irelandAddressJpaRepository.findByPostcodeAndAddressline1AndAddressline2AndStreet(
+				ia.getPostcode(), ia.getAddressline1(), ia.getAddressline2(), ia.getStreet());
+		
+		if(databaseIA != null)
+			ia.setId(databaseIA.getId());
+		
+		ia = irelandAddressJpaRepository.save(ia);
 		return irelandAddressConverter.entity2WWmodel(ia);
 	}
 

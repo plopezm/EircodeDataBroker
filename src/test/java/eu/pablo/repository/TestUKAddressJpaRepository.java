@@ -87,5 +87,36 @@ public class TestUKAddressJpaRepository {
 		assertEquals(1, res);
 		assertNull(ukaAddressJpaRepository.findByPostcode("POSTCODE1"));
 	}
+	
+	@Test
+	public void testFindByPostcodeAndAddressline1AndAddressline2AndStreet(){
+		UKAddress uka = new UKAddress();
+		uka.setPostcode("POSTCODE1");
+		uka.setAddressline1("False Street number 123");
+		
+		ukaAddressJpaRepository.save(uka);
+		assertEquals(uka.getAddressline1(),ukaAddressJpaRepository.findByPostcode(uka.getPostcode()).getAddressline1());
+		
+		UKAddress uka1 = ukaAddressJpaRepository.findByPostcode(uka.getPostcode());
+		UKAddress uka2 = ukaAddressJpaRepository.findByPostcodeAndAddressline1AndAddressline2AndStreet(uka.getPostcode(), uka.getAddressline1(), uka.getAddressline2(), uka.getStreet());
+		
+		assertEquals(uka1.getId(), uka2.getId());
+	}
+	
+	@Test
+	public void testJpaUpdateAddress(){
+		UKAddress uka = new UKAddress();
+		uka.setPostcode("POSTCODE1");
+		uka.setAddressline1("False Street number 123");
+		
+		ukaAddressJpaRepository.save(uka);
+		
+		assertEquals(uka.getAddressline1(),ukaAddressJpaRepository.findByPostcode("POSTCODE1").getAddressline1());	
+
+		uka.setAddressline1("False Street number 456");
+		ukaAddressJpaRepository.save(uka);
+
+		assertEquals(uka.getAddressline1(),ukaAddressJpaRepository.findByPostcode("POSTCODE1").getAddressline1());	
+	}
 
 }
