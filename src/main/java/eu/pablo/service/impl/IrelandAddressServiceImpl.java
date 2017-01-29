@@ -1,5 +1,7 @@
 package eu.pablo.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -28,27 +30,21 @@ public class IrelandAddressServiceImpl implements IrelandAddressService {
 	}
 
 	@Override
-	public IrelandAddressModel findByPostcode(String postcode) {
-		IrelandAddress ia = irelandAddressJpaRepository.findByPostcode(postcode);
-		if(ia == null)
-			return null;
-		return irelandAddressConverter.entity2model(ia);
+	public List<IrelandAddressModel> findByPostcode(String postcode) {
+		List<IrelandAddress> ia = irelandAddressJpaRepository.findByPostcode(postcode);
+		return irelandAddressConverter.entities2models(ia);
 	}
 
 	@Override
-	public IrelandAddressCoordinateLookupModel findCoordinateLookupByPostcode(String postcode) {
-		IrelandAddress ia = irelandAddressJpaRepository.findByPostcode(postcode);
-		if(ia == null || !ia.isGeoValid())
-			return null;
-		return irelandAddressConverter.entity2CoordModel(ia);
+	public List<IrelandAddressCoordinateLookupModel> findCoordinateLookupByPostcode(String postcode) {
+		List<IrelandAddress> ia = irelandAddressJpaRepository.findByPostcode(postcode);
+		return irelandAddressConverter.entities2CoordModels(ia);
 	}
 
 	@Override
-	public IrelandAddressWhat3WordsModel findWhat3WordsByPostcode(String postcode) {
-		IrelandAddress ia = irelandAddressJpaRepository.findByPostcode(postcode);
-		if(ia == null || !ia.isW3WValid())
-			return null;
-		return irelandAddressConverter.entity2WWmodel(ia);
+	public List<IrelandAddressWhat3WordsModel> findWhat3WordsByPostcode(String postcode) {
+		List<IrelandAddress> ia = irelandAddressJpaRepository.findByPostcode(postcode);
+		return irelandAddressConverter.entities2WWmodels(ia);
 	}
 
 	@Override

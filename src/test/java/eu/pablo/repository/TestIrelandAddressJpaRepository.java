@@ -1,6 +1,9 @@
 package eu.pablo.repository;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -42,7 +45,7 @@ public class TestIrelandAddressJpaRepository {
 		
 		entityManager.persist(ia);
 		
-		assertEquals(ia.getAddressline1(),irelandAddressJpaRepository.findByPostcode("POSTCODE1").getAddressline1());	
+		assertEquals(ia.getAddressline1(),irelandAddressJpaRepository.findOneByPostcode("POSTCODE1").getAddressline1());	
 	}
 	
 	@Test
@@ -54,7 +57,7 @@ public class TestIrelandAddressJpaRepository {
 		
 		entityManager.persist(ia);
 		
-		assertNull(null,irelandAddressJpaRepository.findByPostcode("POSTCODE2"));	
+		assertNull(null,irelandAddressJpaRepository.findOneByPostcode("POSTCODE2"));	
 	}
 	
 	@Test
@@ -66,7 +69,7 @@ public class TestIrelandAddressJpaRepository {
 		
 		irelandAddressJpaRepository.save(ia);
 		
-		assertEquals(ia.getAddressline1(),irelandAddressJpaRepository.findByPostcode("POSTCODE1").getAddressline1());	
+		assertEquals(ia.getAddressline1(),irelandAddressJpaRepository.findOneByPostcode("POSTCODE1").getAddressline1());	
 	}
 
 	@Test
@@ -78,12 +81,12 @@ public class TestIrelandAddressJpaRepository {
 		
 		irelandAddressJpaRepository.save(ia);
 		
-		assertEquals(ia.getAddressline1(),irelandAddressJpaRepository.findByPostcode("POSTCODE1").getAddressline1());	
+		assertEquals(ia.getAddressline1(),irelandAddressJpaRepository.findOneByPostcode("POSTCODE1").getAddressline1());	
 		
 		int res = irelandAddressJpaRepository.deleteByPostcode(ia.getPostcode());
 		
 		assertEquals(1, res);
-		assertNull(irelandAddressJpaRepository.findByPostcode("POSTCODE1"));
+		assertNull(irelandAddressJpaRepository.findOneByPostcode("POSTCODE1"));
 	}
 	
 	@Test
@@ -93,9 +96,9 @@ public class TestIrelandAddressJpaRepository {
 		ia.setAddressline1("False Street number 123");
 		
 		irelandAddressJpaRepository.save(ia);
-		assertEquals(ia.getAddressline1(),irelandAddressJpaRepository.findByPostcode(ia.getPostcode()).getAddressline1());
+		assertEquals(ia.getAddressline1(),irelandAddressJpaRepository.findOneByPostcode(ia.getPostcode()).getAddressline1());
 		
-		IrelandAddress ia1 = irelandAddressJpaRepository.findByPostcode(ia.getPostcode());
+		IrelandAddress ia1 = irelandAddressJpaRepository.findOneByPostcode(ia.getPostcode());
 		IrelandAddress ia2 = irelandAddressJpaRepository.findByPostcodeAndAddressline1AndAddressline2AndStreet(ia.getPostcode(), ia.getAddressline1(), ia.getAddressline2(), ia.getStreet());
 		
 		assertEquals(ia1.getId(), ia2.getId());
@@ -109,11 +112,30 @@ public class TestIrelandAddressJpaRepository {
 		
 		irelandAddressJpaRepository.save(ia);
 		
-		assertEquals(ia.getAddressline1(),irelandAddressJpaRepository.findByPostcode("POSTCODE1").getAddressline1());	
+		assertEquals(ia.getAddressline1(),irelandAddressJpaRepository.findOneByPostcode("POSTCODE1").getAddressline1());	
 
 		ia.setAddressline1("False Street number 456");
 		irelandAddressJpaRepository.save(ia);
 
-		assertEquals(ia.getAddressline1(),irelandAddressJpaRepository.findByPostcode("POSTCODE1").getAddressline1());	
+		assertEquals(ia.getAddressline1(),irelandAddressJpaRepository.findOneByPostcode("POSTCODE1").getAddressline1());	
 	}
+	
+	@Test
+	public void testFindAllByPostcode(){
+		IrelandAddress ia = new IrelandAddress();
+		ia.setPostcode("POSTCODE1");
+		ia.setAddressline1("False Street number 123");
+		
+		IrelandAddress ia2 = new IrelandAddress();
+		ia2.setPostcode("POSTCODE1");
+		ia2.setAddressline1("False Street number 1234");
+		ia2.setAddressline2("Another address line");
+		
+		irelandAddressJpaRepository.save(ia);
+		irelandAddressJpaRepository.save(ia2);
+		
+		List<IrelandAddress> list = irelandAddressJpaRepository.findByPostcode("POSTCODE1");
+		assertEquals(2, list.size());
+	}
+	
 }

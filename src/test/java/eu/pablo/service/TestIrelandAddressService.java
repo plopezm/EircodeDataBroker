@@ -32,7 +32,7 @@ public class TestIrelandAddressService {
 		iam.setAddressline1("False Street number 123");
 		
 		irelandAddressService.insertIrelandAddress(iam);
-		assertEquals(iam.getAddressline1(), irelandAddressService.findByPostcode("POSTCODE1").getAddressline1());	
+		assertEquals(iam.getAddressline1(), irelandAddressService.findByPostcode("POSTCODE1").get(0).getAddressline1());	
 	}
 	
 	@Test
@@ -45,7 +45,7 @@ public class TestIrelandAddressService {
 		iam.setLongitude("2");
 		
 		irelandAddressService.insertIrelandAddress(iam);
-		IrelandAddressCoordinateLookupModel iam2 = irelandAddressService.findCoordinateLookupByPostcode("POSTCODE1");
+		IrelandAddressCoordinateLookupModel iam2 = irelandAddressService.findCoordinateLookupByPostcode("POSTCODE1").get(0);
 		assertEquals(iam.getAddressline1(), iam2.getAddressline1());	
 		assertEquals("1", iam2.getLatitude());
 		assertEquals("2", iam2.getLongitude());
@@ -59,12 +59,12 @@ public class TestIrelandAddressService {
 		am.setAddressline1("False Street number 123");
 		
 		irelandAddressService.insertIrelandAddress(am);
-		assertEquals(am.getAddressline1(), irelandAddressService.findByPostcode("POSTCODE2").getAddressline1());
+		assertEquals(am.getAddressline1(), irelandAddressService.findByPostcode("POSTCODE2").get(0).getAddressline1());
 		
 		IrelandAddressModel res = irelandAddressService.removeIrelandAddress(am);
 		
 		assertNotNull(res);
-		assertNull(irelandAddressService.findByPostcode("POSTCODE2"));
+		assertEquals(0, irelandAddressService.findByPostcode("POSTCODE2").size());
 		
 	}
 	
@@ -76,7 +76,7 @@ public class TestIrelandAddressService {
 		am.setAddressline1("False Street number 123");
 		
 		irelandAddressService.insertIrelandAddress(am);
-		assertEquals(am.getAddressline1(), irelandAddressService.findByPostcode("POSTCODE2").getAddressline1());
+		assertEquals(am.getAddressline1(), irelandAddressService.findByPostcode("POSTCODE2").get(0).getAddressline1());
 		
 		am.setPostcode("POSTCODE1");
 		IrelandAddressModel res = irelandAddressService.removeIrelandAddress(am);
@@ -95,12 +95,12 @@ public class TestIrelandAddressService {
 		iam.setLongitude("2");
 		
 		irelandAddressService.insertIrelandAddress(iam);
-		assertEquals(iam.getAddressline1(), irelandAddressService.findByPostcode("POSTCODE2").getAddressline1());
+		assertEquals(iam.getAddressline1(), irelandAddressService.findByPostcode("POSTCODE2").get(0).getAddressline1());
 		
 		IrelandAddressModel res = irelandAddressService.removeIrelandAddress(iam);
 		
 		assertNotNull(res);
-		assertNull(irelandAddressService.findByPostcode("POSTCODE2"));
+		assertEquals(0,irelandAddressService.findByPostcode("POSTCODE2").size());
 		
 	}
 	
@@ -112,7 +112,7 @@ public class TestIrelandAddressService {
 		iam.setAddressline1("False Street number 123");
 		
 		irelandAddressService.insertIrelandAddress(iam);
-		assertNull(irelandAddressService.findByPostcode("POSTCODE2"));		
+		assertEquals(0, irelandAddressService.findByPostcode("POSTCODE2").size());		
 	}
 	
 	@Test
@@ -128,7 +128,7 @@ public class TestIrelandAddressService {
 		
 		irelandAddressService.insertIrelandAddress(iam);
 		
-		assertEquals(iam.getAddressline1(), irelandAddressService.findByPostcode("POSTCODE1").getAddressline1());
+		assertEquals(iam.getAddressline1(), irelandAddressService.findByPostcode("POSTCODE1").get(0).getAddressline1());
 	}
 
 }
