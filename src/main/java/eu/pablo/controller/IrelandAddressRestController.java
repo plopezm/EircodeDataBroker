@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,7 @@ import eu.pablo.model.IrelandAddressModel;
 import eu.pablo.service.IrelandAddressService;
 
 @RestController
-@RequestMapping("/pcw")
+@RequestMapping("/pcw/{api_key}")
 public class IrelandAddressRestController {
 	
 	private static Log LOGGER = LogFactory.getLog(IrelandAddressRestController.class);
@@ -55,7 +56,8 @@ public class IrelandAddressRestController {
 		return new ResponseEntity<IrelandAddressCoordinateLookupModel>(iam, HttpStatus.OK);
 	}
 	
-	@GetMapping("/{api_key}/address/ie/{postcode}")
+    @CrossOrigin(origins = "http://localhost:9000")
+	@GetMapping("/address/ie/{postcode}")
 	public ResponseEntity<IrelandAddressModel> fetchIrelandAddressModel(
 			@PathVariable("api_key") String apiKey,
 			@PathVariable("postcode") String postcode,
@@ -67,7 +69,8 @@ public class IrelandAddressRestController {
 		return new ResponseEntity<IrelandAddressModel>(iam, HttpStatus.OK);
 	}
 	
-	@GetMapping("/{api_key}/addressgeo/ie/{postcode}")
+    @CrossOrigin(origins = "http://localhost:9000")
+	@GetMapping("/addressgeo/ie/{postcode}")
 	public ResponseEntity<IrelandAddressCoordinateLookupModel> fetchIrelandAddressCoordinateLookupModel(
 			@PathVariable("api_key") String apiKey,
 			@PathVariable("postcode") String postcode,

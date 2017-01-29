@@ -54,5 +54,17 @@ public class IrelandAddress extends Address {
 				+ ", getCounty()=" + getCounty() + ", getPostcode()=" + getPostcode() + ", toString()="
 				+ super.toString() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + "]";
 	}
+	
+	public boolean isGeoValid(){
+		return this.getLatitude() != null 
+				&& this.getLatitude().length()>0
+				&& this.getLongitude() != null
+				&& this.getLongitude().length()>0;
+	}
+	
+	public boolean isW3WValid(){
+		return this.getWhat3words() != null &&
+				this.getWhat3words().length()>0;
+	}
 
 }

@@ -38,7 +38,7 @@ public class IrelandAddressServiceImpl implements IrelandAddressService {
 	@Override
 	public IrelandAddressCoordinateLookupModel findCoordinateLookupByPostcode(String postcode) {
 		IrelandAddress ia = irelandAddressJpaRepository.findByPostcode(postcode);
-		if(ia == null)
+		if(ia == null || !ia.isGeoValid())
 			return null;
 		return irelandAddressConverter.entity2CoordModel(ia);
 	}
@@ -46,7 +46,7 @@ public class IrelandAddressServiceImpl implements IrelandAddressService {
 	@Override
 	public IrelandAddressWhat3WordsModel findWhat3WordsByPostcode(String postcode) {
 		IrelandAddress ia = irelandAddressJpaRepository.findByPostcode(postcode);
-		if(ia == null)
+		if(ia == null || !ia.isW3WValid())
 			return null;
 		return irelandAddressConverter.entity2WWmodel(ia);
 	}
