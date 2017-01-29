@@ -3,6 +3,8 @@ package eu.pablo.controller;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.junit.Test;
@@ -61,12 +63,12 @@ public class TestIrelandAddressRestController {
 		
 		assertThat(irelandAddressService.insertIrelandAddress(iam)).isNotNull();
 		
-		ResponseEntity<IrelandAddressModel> re = this.restTemplate.getForEntity("http://localhost:" + port + "/pcw/"+IRELAND_API_KEY+"/address/ie/"+TEST_POSTCODE+"?format=json",
-				IrelandAddressModel.class);
+		ResponseEntity<IrelandAddressModel[]> re = this.restTemplate.getForEntity("http://localhost:" + port + "/pcw/"+IRELAND_API_KEY+"/address/ie/"+TEST_POSTCODE+"?format=json",
+				IrelandAddressModel[].class);
 		
 		assertThat(re).isNotNull();
 		assertEquals(HttpStatus.OK, re.getStatusCode());
-		assertEquals(iam.getPostcode(), re.getBody().getPostcode());
+		assertEquals(iam.getPostcode(), re.getBody()[0].getPostcode());
 	}
 	
 

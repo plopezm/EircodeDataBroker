@@ -22,7 +22,7 @@ public class UkAddressServiceImpl implements UKAddressService {
 	
 	@Override
 	public UkAddressModel findByPostcode(String postcode) {
-		UKAddress uka = ukAddressJpaRepository.findByPostcode(postcode);
+		UKAddress uka = ukAddressJpaRepository.findOneByPostcode(postcode);
 		if(uka == null)
 			return null;
 		return ukAddressConverter.entity2model(uka);
