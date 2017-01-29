@@ -114,5 +114,21 @@ public class TestIrelandAddressService {
 		irelandAddressService.insertIrelandAddress(iam);
 		assertNull(irelandAddressService.findByPostcode("POSTCODE2"));		
 	}
+	
+	@Test
+	@Transactional
+	public void testUpdateIrelandAddress(){
+		IrelandAddressModel iam = new IrelandAddressModel();
+		iam.setPostcode("POSTCODE1");
+		iam.setAddressline1("False Street number 123");
+		
+		irelandAddressService.insertIrelandAddress(iam);
+		
+		iam.setAddressline1("False Street number 123");
+		
+		irelandAddressService.insertIrelandAddress(iam);
+		
+		assertEquals(iam.getAddressline1(), irelandAddressService.findByPostcode("POSTCODE1").getAddressline1());
+	}
 
 }
